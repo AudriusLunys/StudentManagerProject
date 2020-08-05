@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
@@ -17,15 +19,7 @@ import studentmanager.domain.Student;
 import java.util.HashSet;
 import java.util.Set;
 
-public class Main extends Application {
-
-    @Override
-    public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/MainMenu.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(root, 300, 275));
-        primaryStage.show();
-    }
+public class Main  {
 
 
     public static void main(String[] args) {
@@ -75,6 +69,6 @@ public class Main extends Application {
 
 
 
-        launch(args);
+
     }
 }
