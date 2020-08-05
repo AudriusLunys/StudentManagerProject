@@ -3,8 +3,7 @@ package studentmanager.FrontEnd;
 
 import javafx.application.Application;
 
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,6 +11,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import studentmanager.dao.StudentDAO;
 import studentmanager.domain.Student;
+
 
 
 
@@ -53,24 +53,21 @@ public class InputStudent extends Application {
         rootGridPane.add(fourthLabel, 0, 6);
         rootGridPane.add(textField4, 0, 7);
 
-        rootGridPane.add(button1,0,8);
-        rootGridPane.add(button2,1,8);
+        rootGridPane.add(button1, 0, 8);
+        rootGridPane.add(button2, 1, 8);
 
         Student student = new Student();
         StudentDAO studentDAO = new StudentDAO();
 
-        try {
-            button1.setOnAction(event -> {
-                student.setFirstName(textField1.getText());
-                student.setLastName(textField2.getText());
-                student.setPhoneNumber(textField3.getText());
-                student.setEmail(textField4.getText());
-                studentDAO.addStudent(student);
-            });
-        } catch (Exception e) {
 
-        }
+       button1.setOnAction(event -> {
+           student.setFirstName(textField1.getText());
+           student.setLastName(textField2.getText());
+           student.setPhoneNumber(textField3.getText());
+           student.setEmail(textField4.getText());
+           studentDAO.addStudent(student);
 
+       });
 
         button2.setOnAction(event -> primaryStage.close());
 
@@ -83,7 +80,7 @@ public class InputStudent extends Application {
 
 
 
-
-
     }
+
+
 }
