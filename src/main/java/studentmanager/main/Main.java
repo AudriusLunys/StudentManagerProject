@@ -7,6 +7,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import org.hibernate.Criteria;
+import org.hibernate.query.Query;
+import studentmanager.FrontEnd.InputGroup;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
 import studentmanager.dao.ModuleDAO;
@@ -17,14 +20,17 @@ import studentmanager.domain.Module;
 import studentmanager.domain.Student;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
-public class Main  {
+public class Main extends Application {
 
 
     public static void main(String[] args) {
+      //  launch(args);
 
 
+        /*
         Faculty faculty = new Faculty();
         faculty.setFacultyName("statybos fakultetas");
         faculty.setSpecialization("Inzinerija");
@@ -66,9 +72,15 @@ public class Main  {
         student2.setPhoneNumber("+3758954223");
         student2.setGroup(group);
         studentDAO.addStudent(student2);
+*/
 
 
 
+    }
 
+ @Override
+  public void start(Stage primaryStage) throws Exception {
+          InputGroup inputGroup = new InputGroup();
+        inputGroup.start(primaryStage);
     }
 }
