@@ -67,6 +67,18 @@ import javax.persistence.*;
         public void setGroup(Group group) {
             this.group = group;
         }
+
+        @Override
+        public String toString() {
+            return "Student{" +
+                    "studentId=" + studentId +
+                    ", firstName='" + firstName + '\'' +
+                    ", lastName='" + lastName + '\'' +
+                    ", phoneNumber='" + phoneNumber + '\'' +
+                    ", email='" + email + '\'' +
+                    ", group=" + group +
+                    '}';
+        }
     }
 
 

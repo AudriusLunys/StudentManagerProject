@@ -29,7 +29,7 @@ public class StudentDAO {
         }
     }
 
-    public Student getStudent (Integer id) {
+    public Student getStudent(Integer id) {
         try {
             Session session = HibernateUtils.getSessionFactory().openSession();
             Student student = session.find(Student.class, id);
@@ -41,7 +41,7 @@ public class StudentDAO {
         }
     }
 
-    public void removeStudent (Student student) {
+    public void removeStudent(Student student) {
         try {
             Session session = HibernateUtils.getSessionFactory().openSession();
             transaction = session.beginTransaction();
@@ -57,7 +57,8 @@ public class StudentDAO {
         }
 
     }
-    public void updateStudent (Student student) {
+
+    public void updateStudent(Student student) {
         Transaction transaction = null;
         try {
             Session session = HibernateUtils.getSessionFactory().openSession();
@@ -65,13 +66,32 @@ public class StudentDAO {
             session.update(student);
             transaction.commit();
         } catch (Exception ex) {
-            if(transaction != null) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            ex.printStackTrace();
+        }
+    }
+    public void displayStudent (Student student) {
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtils.getSessionFactory().openSession();
+            transaction = session.beginTransaction();
+            List<Student> list = session.createCriteria(Student.class).list();
+            for (Student student1 : list) {
+                System.out.println(student1);
+            }
+            transaction.commit();
+        }
+        catch (Exception ex) {
+            if (transaction != null) {
                 transaction.rollback();
             }
             ex.printStackTrace();
         }
     }
 
-
-
 }
+
+
+

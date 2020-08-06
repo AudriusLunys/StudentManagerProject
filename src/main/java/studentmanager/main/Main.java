@@ -30,7 +30,8 @@ public class Main extends Application {
       //  launch(args);
 
 
-        /*
+
+
         Faculty faculty = new Faculty();
         faculty.setFacultyName("statybos fakultetas");
         faculty.setSpecialization("Inzinerija");
@@ -72,7 +73,9 @@ public class Main extends Application {
         student2.setPhoneNumber("+3758954223");
         student2.setGroup(group);
         studentDAO.addStudent(student2);
-*/
+
+        studentDAO.displayStudent(student1);
+
 
 
 
