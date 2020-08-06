@@ -7,6 +7,7 @@ import studentmanager.utils.HibernateUtils;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class StudentDAO {
@@ -89,6 +90,26 @@ public class StudentDAO {
             }
             ex.printStackTrace();
         }
+    }
+
+     public void listStudents(){
+         Transaction transaction = null;
+         try {
+             Session session = HibernateUtils.getSessionFactory().openSession();
+             transaction = session.beginTransaction();
+             List students = session.createQuery("FROM Student").list();
+             for (Iterator iterator = students.iterator(); iterator.hasNext();){
+                 Student student = (Student) iterator.next();
+                 System.out.print("First Name: " + student.getFirstName());
+                 System.out.print("Last Name: " + student.getLastName());
+             }
+             transaction.commit();
+         }  catch (Exception ex) {
+             if (transaction != null) {
+                 transaction.rollback();
+             }
+             ex.printStackTrace();
+         }
     }
 
 }

@@ -74,7 +74,7 @@ public class Main extends Application {
         student2.setGroup(group);
         studentDAO.addStudent(student2);
 
-        studentDAO.displayStudent(student1);
+        studentDAO.listStudents();
 
 
 
