@@ -1,9 +1,6 @@
 package studentmanager.FrontEnd;
 
-
 import javafx.application.Application;
-
-
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -12,16 +9,12 @@ import javafx.stage.Stage;
 import studentmanager.dao.StudentDAO;
 import studentmanager.domain.Student;
 
-
-
-
 public class InputStudent extends Application {
 
     public static void main(String[] args) {
 
         launch();
     }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
