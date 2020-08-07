@@ -22,7 +22,7 @@ public class FacultyMenu extends Application {
     Stage facultyWindow;
     TableView<Faculty> facultyTable ;
     TextField facultyNameInput, facultySpecializationInput;
-
+    ObservableList<Faculty> obsFaculties = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
       //for test purposes
@@ -73,7 +73,7 @@ public class FacultyMenu extends Application {
         facultySpecializationInput.setMinWidth(100);
 
         Button addButton = new Button("Add");
-        addButton.setOnAction(event -> addButtonClicked());
+        addButton.setOnAction(event -> {addButtonClicked();refreshTable();});
 
         Button deleteButton = new Button("Delete");
        // deleteButton.setOnAction(event -> deleteButtonClicked);
@@ -101,7 +101,6 @@ public class FacultyMenu extends Application {
     }
 
     public ObservableList<Faculty> getFaculty (){
-        ObservableList<Faculty> obsFaculties = FXCollections.observableArrayList();
         FacultyDAO facultyDAO = new FacultyDAO();
         List<Faculty> facultyList = facultyDAO.getFacultyList();
         for (Faculty faculty : facultyList) {
@@ -120,6 +119,8 @@ public class FacultyMenu extends Application {
 
     }
     public void refreshTable() {
+        obsFaculties.clear();
+        getFaculty();
         facultyTable.refresh();
     }
 }
