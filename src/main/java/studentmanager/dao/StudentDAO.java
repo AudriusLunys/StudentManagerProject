@@ -73,24 +73,7 @@ public class StudentDAO {
             ex.printStackTrace();
         }
     }
-    public void displayStudent (Student student) {
-        Transaction transaction = null;
-        try {
-            Session session = HibernateUtils.getSessionFactory().openSession();
-            transaction = session.beginTransaction();
-            List<Student> list = session.createCriteria(Student.class).list();
-            for (Student student1 : list) {
-                System.out.println(student1);
-            }
-            transaction.commit();
-        }
-        catch (Exception ex) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
-            ex.printStackTrace();
-        }
-    }
+
 
      public void listStudents(){
          Transaction transaction = null;

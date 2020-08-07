@@ -22,6 +22,14 @@ public class Faculty {
     public Faculty() {
     }
 
+    public Integer getFacultyId() {
+        return facultyId;
+    }
+
+    public void setFacultyId(Integer facultyId) {
+        this.facultyId = facultyId;
+    }
+
     public String getFacultyName() {
         return facultyName;
     }
@@ -36,5 +44,14 @@ public class Faculty {
 
     public void setSpecialization(String specialization) {
         this.specialization = specialization;
+    }
+
+    @Override
+    public String toString() {
+        return "Faculty{" +
+                "facultyId=" + facultyId +
+                ", facultyName='" + facultyName + '\'' +
+                ", specialization='" + specialization + '\'' +
+                '}';
     }
 }

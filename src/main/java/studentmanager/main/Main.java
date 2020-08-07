@@ -74,12 +74,15 @@ public class Main extends Application {
         student2.setGroup(group);
         studentDAO.addStudent(student2);
 
-        studentDAO.listStudents();
+
+        System.out.println(facultyDAO.getFacultyList());
+
+        }
 
 
 
 
-    }
+
 
  @Override
   public void start(Stage primaryStage) throws Exception {

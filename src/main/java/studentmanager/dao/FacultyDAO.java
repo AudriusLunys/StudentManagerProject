@@ -6,6 +6,8 @@ import studentmanager.domain.Faculty;
 
 import studentmanager.utils.HibernateUtils;
 
+import java.util.List;
+
 public class FacultyDAO {
 
     private Transaction transaction = null;
@@ -66,6 +68,18 @@ public class FacultyDAO {
                 transaction.rollback();
             }
             ex.printStackTrace();
+        }
+    }
+
+    public List<Faculty> getFacultyList (){
+        Transaction transaction = null;
+        try {
+            Session session = HibernateUtils.getSessionFactory().openSession();
+            List<Faculty> faculties = session.createQuery("from Faculty",Faculty.class).list();
+            return faculties;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 }
