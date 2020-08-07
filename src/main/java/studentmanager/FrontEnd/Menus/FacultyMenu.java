@@ -21,11 +21,22 @@ public class FacultyMenu extends Application {
 
     public static void main(String[] args) {
       //for test purposes
-        Faculty faculty = new Faculty();
-        faculty.setFacultyName("statybos fakultetas");
-        faculty.setSpecialization("Inzinerija");
+        Faculty faculty1 = new Faculty();
+        faculty1.setFacultyName("Statybos Fakultetas");
+        faculty1.setSpecialization("Inzinerija");
+
+        Faculty faculty2 = new Faculty();
+        faculty2.setFacultyName("Informatikos Fakultetas");
+        faculty2.setSpecialization("Informacines technologijos");
+
+        Faculty faculty3 = new Faculty();
+        faculty3.setFacultyName("Filologijos Fakultetas");
+        faculty3.setSpecialization("Filologija");
+
         FacultyDAO facultyDAO = new FacultyDAO();
-        facultyDAO.addFaculty(faculty);
+        facultyDAO.addFaculty(faculty1);
+        facultyDAO.addFaculty(faculty2);
+        facultyDAO.addFaculty(faculty3);
 
   launch();
     }
@@ -65,9 +76,6 @@ public class FacultyMenu extends Application {
         FacultyDAO facultyDAO = new FacultyDAO();
         List<Faculty> facultyList = facultyDAO.getFacultyList();
         for (Faculty faculty : facultyList) {
-            faculty.getFacultyId();
-            faculty.getFacultyName();
-            faculty.getSpecialization();
             obsFaculties.add(faculty);
         }return  obsFaculties;
     }
