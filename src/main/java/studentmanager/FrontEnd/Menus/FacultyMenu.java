@@ -20,12 +20,12 @@ import java.util.List;
 
 public class FacultyMenu extends Application {
     Stage facultyWindow;
-    TableView<Faculty> facultyTable ;
+    TableView<Faculty> facultyTable;
     TextField facultyNameInput, facultySpecializationInput;
     ObservableList<Faculty> obsFaculties = FXCollections.observableArrayList();
 
     public static void main(String[] args) {
-      //for test purposes
+        //for test purposes
         Faculty faculty1 = new Faculty();
         faculty1.setFacultyName("Statybos Fakultetas");
         faculty1.setSpecialization("Inzinerija");
@@ -43,24 +43,24 @@ public class FacultyMenu extends Application {
         facultyDAO.addFaculty(faculty2);
         facultyDAO.addFaculty(faculty3);
 
-  launch();
+        launch();
     }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-      facultyWindow = primaryStage;
-      facultyWindow.setTitle("Faculty Menu");
+        facultyWindow = primaryStage;
+        facultyWindow.setTitle("Faculty Menu");
 
 
-        TableColumn<Faculty,Integer> facultyIdColumn = new TableColumn<>("Faculty ID");
+        TableColumn<Faculty, Integer> facultyIdColumn = new TableColumn<>("Faculty ID");
         facultyIdColumn.setMinWidth(100);
         facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("facultyId"));
 
-        TableColumn<Faculty,String> facultyNameColumn = new TableColumn<>("Faculty Name");
+        TableColumn<Faculty, String> facultyNameColumn = new TableColumn<>("Faculty Name");
         facultyNameColumn.setMinWidth(200);
         facultyNameColumn.setCellValueFactory(new PropertyValueFactory<>("facultyName"));
 
-        TableColumn<Faculty,String> facultySpecializationColumn = new TableColumn<>("Faculty Specialization");
+        TableColumn<Faculty, String> facultySpecializationColumn = new TableColumn<>("Faculty Specialization");
         facultySpecializationColumn.setMinWidth(200);
         facultySpecializationColumn.setCellValueFactory(new PropertyValueFactory<>("specialization"));
 
@@ -73,42 +73,46 @@ public class FacultyMenu extends Application {
         facultySpecializationInput.setMinWidth(100);
 
         Button addButton = new Button("Add");
-        addButton.setOnAction(event -> {addButtonClicked();refreshTable();});
+        addButton.setOnAction(event -> {
+            addButtonClicked();
+            refreshTable();
+        });
 
         Button deleteButton = new Button("Delete");
-       // deleteButton.setOnAction(event -> deleteButtonClicked);
+        // deleteButton.setOnAction(event -> deleteButtonClicked);
         Button editButton = new Button("Edit");
-       // editButton.setOnAction(event -> editButtonClicked);
+        // editButton.setOnAction(event -> editButtonClicked);
 
 
         HBox hBox = new HBox();
-        hBox.setPadding(new Insets(10,10,10,10));
+        hBox.setPadding(new Insets(10, 10, 10, 10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(facultyNameInput,facultySpecializationInput,addButton,deleteButton,editButton);
+        hBox.getChildren().addAll(facultyNameInput, facultySpecializationInput, addButton, deleteButton, editButton);
 
 
         facultyTable = new TableView<>();
         facultyTable.setItems(getFaculty());
-        facultyTable.getColumns().addAll(facultyIdColumn,facultyNameColumn,facultySpecializationColumn);
+        facultyTable.getColumns().addAll(facultyIdColumn, facultyNameColumn, facultySpecializationColumn);
 
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(facultyTable,hBox);
+        vBox.getChildren().addAll(facultyTable, hBox);
         Scene scene = new Scene(vBox);
         facultyWindow.setScene(scene);
         facultyWindow.show();
 
     }
 
-    public ObservableList<Faculty> getFaculty (){
+    public ObservableList<Faculty> getFaculty() {
         FacultyDAO facultyDAO = new FacultyDAO();
         List<Faculty> facultyList = facultyDAO.getFacultyList();
         for (Faculty faculty : facultyList) {
             obsFaculties.add(faculty);
-        }return  obsFaculties;
+        }
+        return obsFaculties;
     }
 
-    public void addButtonClicked () {
+    public void addButtonClicked() {
         Faculty faculty = new Faculty();
         faculty.setFacultyName(facultyNameInput.getText());
         faculty.setSpecialization(facultySpecializationInput.getText());
@@ -118,6 +122,13 @@ public class FacultyMenu extends Application {
         facultySpecializationInput.clear();
 
     }
+
+    public void deleteButtonClicked() {
+        ObservableList<Faculty> facultySelected, allFaculties;
+
+    }
+
+
     public void refreshTable() {
         obsFaculties.clear();
         getFaculty();
