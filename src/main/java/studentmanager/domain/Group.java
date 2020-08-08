@@ -23,9 +23,9 @@ import java.util.Set;
         @JoinColumn(name = "facultyId")
         private Faculty faculty;
 
-        @ManyToMany
-        @JoinTable (name= "join_groups_modules", joinColumns = {@JoinColumn(name="groupId")},
-                inverseJoinColumns ={@JoinColumn(name = "moduleId")} )
+        @ManyToMany (mappedBy = "groups")
+      //  @JoinTable (name= "join_groups_modules", joinColumns = {@JoinColumn(name="groupId")},
+            //    inverseJoinColumns ={@JoinColumn(name = "moduleId")} )
         private Set<Module> modules = new HashSet<>();
 
         public Group() {

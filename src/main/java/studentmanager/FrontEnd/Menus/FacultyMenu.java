@@ -79,7 +79,8 @@ public class FacultyMenu extends Application {
         });
 
         Button deleteButton = new Button("Delete");
-        // deleteButton.setOnAction(event -> deleteButtonClicked);
+        deleteButton.setOnAction(event -> deleteButtonClicked());
+
         Button editButton = new Button("Edit");
         // editButton.setOnAction(event -> editButtonClicked);
 
@@ -114,17 +115,27 @@ public class FacultyMenu extends Application {
 
     public void addButtonClicked() {
         Faculty faculty = new Faculty();
+
         faculty.setFacultyName(facultyNameInput.getText());
         faculty.setSpecialization(facultySpecializationInput.getText());
         FacultyDAO facultyDAO = new FacultyDAO();
         facultyDAO.addFaculty(faculty);
         facultyNameInput.clear();
         facultySpecializationInput.clear();
+        // reikia ifo kuris tikrintu textbox inputo ilgi
 
     }
 
     public void deleteButtonClicked() {
-        ObservableList<Faculty> facultySelected, allFaculties;
+        ObservableList<Faculty> selectedRows, allFaculties;
+        FacultyDAO facultyDAO = new FacultyDAO();
+        allFaculties = facultyTable.getItems();
+        selectedRows = facultyTable.getSelectionModel().getSelectedItems();
+        for (Faculty faculty : selectedRows) {
+            allFaculties.remove(faculty);
+            faculty = facultyDAO.getFaculty(selectedRows.get(0).getFacultyId());
+            facultyDAO.removeFaculty(faculty);
+        }
 
     }
 
