@@ -29,9 +29,6 @@ public class Main extends Application {
     public static void main(String[] args) {
       //  launch(args);
 
-
-
-
         Faculty faculty = new Faculty();
         faculty.setFacultyName("statybos fakultetas");
         faculty.setSpecialization("Inzinerija");
@@ -75,7 +72,7 @@ public class Main extends Application {
         studentDAO.addStudent(student2);
 
 
-        System.out.println(facultyDAO.getFacultyList());
+        System.out.println(groupDAO.getGroupList());
 
         }
 

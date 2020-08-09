@@ -2,8 +2,11 @@ package studentmanager.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import studentmanager.domain.Faculty;
 import studentmanager.domain.Group;
 import studentmanager.utils.HibernateUtils;
+
+import java.util.List;
 
 public class GroupDAO {
     private Transaction transaction = null;
@@ -64,6 +67,18 @@ public class GroupDAO {
                 transaction.rollback();
             }
             ex.printStackTrace();
+        }
+    }
+
+    public List<Group> getGroupList (){
+
+        try {
+            Session session = HibernateUtils.getSessionFactory().openSession();
+            List<Group> groups = session.createQuery("from Group", Group.class).list();
+            return groups;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 }

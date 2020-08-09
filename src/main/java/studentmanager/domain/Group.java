@@ -31,6 +31,13 @@ import java.util.Set;
         public Group() {
         }
 
+        public Integer getGroupId() {
+            return groupId;
+        }
+
+        public void setGroupId(Integer groupId) {
+            this.groupId = groupId;
+        }
 
         public String getGroupName() {
             return groupName;
@@ -70,6 +77,15 @@ import java.util.Set;
 
         public void setModules(Set<Module> modules) {
             this.modules = modules;
+        }
+
+        @Override
+        public String toString() {
+            return "Group{" +
+                    "groupId=" + groupId +
+                    ", groupName='" + groupName + '\'' +
+                    ", academicYear=" + academicYear +
+                    '}';
         }
     }
 

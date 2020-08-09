@@ -20,6 +20,7 @@ public class MainMenu extends Application {
         rootGridPane.setAlignment(Pos.TOP_CENTER);
 
         Button button1 = new Button("Faculties");
+      //  button1.setOnAction(event -> );
         button1.setMinSize(250,40);
         Button button2 = new Button("Groups");
         button2.setMinSize(250,40);

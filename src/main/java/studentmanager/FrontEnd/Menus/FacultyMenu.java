@@ -81,27 +81,23 @@ public class FacultyMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> deleteButtonClicked());
 
-        Button editButton = new Button("Edit");
-        // editButton.setOnAction(event -> editButtonClicked);
-
+        Button exitButton = new Button("Exit");
+        exitButton.setOnAction(event -> facultyWindow.close());
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(facultyNameInput, facultySpecializationInput, addButton, deleteButton, editButton);
-
+        hBox.getChildren().addAll(facultyNameInput, facultySpecializationInput, addButton, deleteButton, exitButton);
 
         facultyTable = new TableView<>();
         facultyTable.setItems(getFaculty());
         facultyTable.getColumns().addAll(facultyIdColumn, facultyNameColumn, facultySpecializationColumn);
-
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(facultyTable, hBox);
         Scene scene = new Scene(vBox);
         facultyWindow.setScene(scene);
         facultyWindow.show();
-
     }
 
     public ObservableList<Faculty> getFaculty() {
@@ -125,7 +121,6 @@ public class FacultyMenu extends Application {
         // reikia ifo kuris tikrintu textbox inputo ilgi
 
     }
-
     public void deleteButtonClicked() {
         ObservableList<Faculty> selectedRows, allFaculties;
         FacultyDAO facultyDAO = new FacultyDAO();
@@ -136,10 +131,7 @@ public class FacultyMenu extends Application {
             faculty = facultyDAO.getFaculty(selectedRows.get(0).getFacultyId());
             facultyDAO.removeFaculty(faculty);
         }
-
     }
-
-
     public void refreshTable() {
         obsFaculties.clear();
         getFaculty();
