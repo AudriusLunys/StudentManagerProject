@@ -46,6 +46,8 @@ public class Faculty {
         this.specialization = specialization;
     }
 
+
+
     @Override
     public String toString() {
         return "Faculty{" +

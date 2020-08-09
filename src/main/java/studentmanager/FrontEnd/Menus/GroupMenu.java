@@ -1,6 +1,7 @@
 package studentmanager.FrontEnd.Menus;
 
 import javafx.application.Application;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -74,10 +75,19 @@ public class GroupMenu extends Application {
         academicYearColumn.setMinWidth(200);
         academicYearColumn.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
 
+        TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty idr");
+        facultyIdColumn .setMinWidth(200);
+       // facultyIDColumn .setCellValueFactory(new PropertyValueFactory<>("faculty"));
+        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
+                return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
+            }
+        });
+
+
         //sitas abejotinas ar reikia
-       TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("Faculty ID");
-       facultyIdColumn.setMinWidth(100);
-       facultyIdColumn.setCellValueFactory();
+
 
 
 
@@ -101,7 +111,7 @@ public class GroupMenu extends Application {
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
-        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn);
+        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn, facultyIdColumn);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(groupTable, hBox);
