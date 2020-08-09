@@ -75,22 +75,23 @@ public class GroupMenu extends Application {
         academicYearColumn.setMinWidth(200);
         academicYearColumn.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
 
-        TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty idr");
-        facultyIdColumn .setMinWidth(200);
+      //  TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty idr");
+     //   facultyIdColumn .setMinWidth(200);
        // facultyIDColumn .setCellValueFactory(new PropertyValueFactory<>("faculty"));
-        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
+       // facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
+        //    @Override
+       //     public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
+       //         return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
+        //    }
+       // });
+        TableColumn<Group, String> facultyIdColumn = new TableColumn<>("faculty Name");
+        facultyIdColumn .setMinWidth(200);
+        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
             @Override
-            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
-                return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
+                return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
             }
         });
-
-
-        //sitas abejotinas ar reikia
-
-
-
-
 
         groupNameInput = new TextField();
         groupNameInput.setPromptText("Group Name");
