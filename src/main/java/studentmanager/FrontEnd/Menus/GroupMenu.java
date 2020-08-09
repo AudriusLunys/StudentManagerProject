@@ -84,9 +84,9 @@ public class GroupMenu extends Application {
        //         return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
         //    }
        // });
-        TableColumn<Group, String> facultyIdColumn = new TableColumn<>("faculty Name");
-        facultyIdColumn .setMinWidth(200);
-        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
+        TableColumn<Group, String> facultyNameColumn = new TableColumn<>("faculty Name");
+        facultyNameColumn .setMinWidth(200);
+        facultyNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
             @Override
             public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
                 return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
@@ -112,7 +112,7 @@ public class GroupMenu extends Application {
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
-        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn, facultyIdColumn);
+        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn, facultyNameColumn);
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(groupTable, hBox);
