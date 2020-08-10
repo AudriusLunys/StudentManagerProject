@@ -23,6 +23,7 @@ public class FacultyMenu extends Application {
     TableView<Faculty> facultyTable;
     TextField facultyNameInput, facultySpecializationInput;
     ObservableList<Faculty> obsFaculties = FXCollections.observableArrayList();
+    FacultyDAO facultyDAO = new FacultyDAO();
 
     public static void main(String[] args) {
         //for test purposes
@@ -101,7 +102,6 @@ public class FacultyMenu extends Application {
     }
 
     public ObservableList<Faculty> getFaculty() {
-        FacultyDAO facultyDAO = new FacultyDAO();
         List<Faculty> facultyList = facultyDAO.getFacultyList();
         for (Faculty faculty : facultyList) {
             obsFaculties.add(faculty);
@@ -111,10 +111,8 @@ public class FacultyMenu extends Application {
 
     public void addButtonClicked() {
         Faculty faculty = new Faculty();
-
         faculty.setFacultyName(facultyNameInput.getText());
         faculty.setSpecialization(facultySpecializationInput.getText());
-        FacultyDAO facultyDAO = new FacultyDAO();
         facultyDAO.addFaculty(faculty);
         facultyNameInput.clear();
         facultySpecializationInput.clear();
@@ -123,7 +121,6 @@ public class FacultyMenu extends Application {
     }
     public void deleteButtonClicked() {
         ObservableList<Faculty> selectedRows, allFaculties;
-        FacultyDAO facultyDAO = new FacultyDAO();
         allFaculties = facultyTable.getItems();
         selectedRows = facultyTable.getSelectionModel().getSelectedItems();
         for (Faculty faculty : selectedRows) {
