@@ -24,9 +24,10 @@ import java.util.List;
 public class GroupMenu extends Application {
     Stage groupWindow;
     TableView<Group> groupTable;
-    TextField groupNameInput, academicYearInput;
+    TextField groupNameInput, academicYearInput, facultyIdInput;
+    ChoiceBox facultySelect;
     ObservableList<Group> obsGroups = FXCollections.observableArrayList();
-
+    GroupDAO groupDAO = new GroupDAO();
 
     public static void main(String[] args) {
 
@@ -102,20 +103,26 @@ public class GroupMenu extends Application {
 
         academicYearInput = new TextField();
         academicYearInput.setPromptText("Academic year");
-        academicYearInput.setMinWidth(100);
+        academicYearInput.setMinWidth(50);
 
-        ChoiceBox<Integer> facultySelect = new ChoiceBox<>();
-        FacultyDAO facultyDAO = new FacultyDAO();
-        facultySelect.setItems(getFacultyIds());
+        facultyIdInput = new TextField();
+        facultyIdInput.setPromptText("Faculty ID");
+        academicYearInput.setMinWidth(50);
 
         Button addButton = new Button("Add");
+        addButton.setOnAction(event -> {
+            addButtonClicked();
+            refreshTable();
+        });
+
+
         Button deleteButton = new Button("Delete");
         Button exitButton = new Button("Exit");
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));
         hBox.setSpacing(10);
-        hBox.getChildren().addAll(groupNameInput, academicYearInput, facultySelect, addButton, deleteButton, exitButton);
+        hBox.getChildren().addAll(groupNameInput, academicYearInput, facultyIdInput, addButton, deleteButton, exitButton);
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
@@ -136,13 +143,37 @@ public class GroupMenu extends Application {
         }
         return obsGroups;
     }
-     public ObservableList<Integer> getFacultyIds () {
-         ObservableList<Integer> facultyIdList = FXCollections.observableArrayList();
+
+    public ObservableList<Integer> getFacultyIds() {
+        ObservableList<Integer> facultyIdList = FXCollections.observableArrayList();
         FacultyDAO facultyDAO = new FacultyDAO();
-         List<Faculty> facultyList = facultyDAO.getFacultyList();
-         for (Faculty faculty : facultyList) {
-             facultyIdList.add(faculty.getFacultyId());
-         }
-         return facultyIdList;
-     }
+        List<Faculty> facultyList = facultyDAO.getFacultyList();
+        for (Faculty faculty : facultyList) {
+            facultyIdList.add(faculty.getFacultyId());
+        }
+        return facultyIdList;
+    }
+
+    public void addButtonClicked() {
+        Group group = new Group();
+        FacultyDAO facultyDAO = new FacultyDAO();
+        group.setGroupName(groupNameInput.getText());
+        int academicYear = Integer.parseInt(academicYearInput.getText());
+        group.setAcademicYear(academicYear);
+        int facId = Integer.parseInt(facultyIdInput.getText());
+        group.setFaculty(facultyDAO.getFaculty(facId));
+        groupDAO.addGroup(group);
+        groupNameInput.clear();
+        academicYearInput.clear();
+        facultyIdInput.clear();
+    }
+
+
+
+
+    public void refreshTable() {
+        obsGroups.clear();
+        getGroup();
+        groupTable.refresh();
+    }
 }
