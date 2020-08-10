@@ -2,6 +2,7 @@ package studentmanager.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import studentmanager.domain.Faculty;
 import studentmanager.domain.Student;
 import studentmanager.utils.HibernateUtils;
 
@@ -75,24 +76,15 @@ public class StudentDAO {
     }
 
 
-     public void listStudents(){
-         Transaction transaction = null;
-         try {
-             Session session = HibernateUtils.getSessionFactory().openSession();
-             transaction = session.beginTransaction();
-             List students = session.createQuery("FROM Student").list();
-             for (Iterator iterator = students.iterator(); iterator.hasNext();){
-                 Student student = (Student) iterator.next();
-                 System.out.print("First Name: " + student.getFirstName());
-                 System.out.print("Last Name: " + student.getLastName());
-             }
-             transaction.commit();
-         }  catch (Exception ex) {
-             if (transaction != null) {
-                 transaction.rollback();
-             }
-             ex.printStackTrace();
-         }
+    public List<Student> getStudentList (){
+        try {
+            Session session = HibernateUtils.getSessionFactory().openSession();
+            List<Student> students = session.createQuery("from Student",Student.class).list();
+            return students;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
+        }
     }
 
 }

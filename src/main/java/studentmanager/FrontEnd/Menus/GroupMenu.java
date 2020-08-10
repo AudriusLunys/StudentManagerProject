@@ -13,10 +13,13 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import studentmanager.FrontEnd.AlertBox;
+import studentmanager.FrontEnd.InputGroup;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
 import studentmanager.domain.Faculty;
 import studentmanager.domain.Group;
+import studentmanager.domain.Student;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,23 +82,23 @@ public class GroupMenu extends Application {
         academicYearColumn.setMinWidth(100);
         academicYearColumn.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
 
-        TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
-        facultyIdColumn.setMinWidth(100);
-        facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("faculty"));
-        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
-            @Override
-            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
-                return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
-            }
-        });
-        TableColumn<Group, String> facultyNameColumn = new TableColumn<>("faculty Name");
-        facultyNameColumn.setMinWidth(200);
-        facultyNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
-            @Override
-            public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
-                return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
-            }
-        });
+        //   TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
+        //  facultyIdColumn.setMinWidth(100);
+        //   facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("faculty"));
+        //   facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
+        //      @Override
+        //       public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
+        //           return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
+        //      }
+        //    });
+        // TableColumn<Group, String> facultyNameColumn = new TableColumn<>("faculty Name");
+        // facultyNameColumn.setMinWidth(200);
+        //   facultyNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
+        //     @Override
+        //     public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
+        //         return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
+        //      }
+        //   });
 
         groupNameInput = new TextField();
         groupNameInput.setPromptText("Group Name");
@@ -128,7 +131,7 @@ public class GroupMenu extends Application {
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
-        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn, facultyNameColumn, facultyIdColumn);
+        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn);  //facultyNameColumn,  facultyIdColumn
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(groupTable, hBox);
@@ -149,29 +152,31 @@ public class GroupMenu extends Application {
 
     public void addButtonClicked() {
         Group group = new Group();
+        Faculty faculty;
         FacultyDAO facultyDAO = new FacultyDAO();
         group.setGroupName(groupNameInput.getText());
-        int academicYear = Integer.parseInt(academicYearInput.getText());
-        group.setAcademicYear(academicYear);
-        int facId = Integer.parseInt(facultyIdInput.getText());
-        group.setFaculty(facultyDAO.getFaculty(facId));
+        group.setAcademicYear(Integer.parseInt(academicYearInput.getText()));
+        faculty = facultyDAO.getFaculty(Integer.parseInt(facultyIdInput.getText()));
+        group.setFaculty(faculty);
         groupDAO.addGroup(group);
         groupNameInput.clear();
         academicYearInput.clear();
         facultyIdInput.clear();
     }
 
+
     public void deleteButtonClicked() {
-        ObservableList<Group> selectedRows, allFaculties;
-        allFaculties = groupTable.getItems();
+        ObservableList<Group> selectedRows, allGroups;
+        allGroups = groupTable.getItems();
         selectedRows = groupTable.getSelectionModel().getSelectedItems();
-        for (Group group : selectedRows) {
-            allFaculties.remove(group);
-            group = groupDAO.getGroup(selectedRows.get(0).getGroupId());
-            groupDAO.removeGroup(group);
+        for (Group selectedRow : selectedRows) {
+            allGroups.remove(selectedRow);
+            selectedRow = groupDAO.getGroup(selectedRow.getGroupId());
+            groupDAO.removeGroup(selectedRow);
         }
 
     }
+
 
     public void refreshTable() {
         obsGroups.clear();

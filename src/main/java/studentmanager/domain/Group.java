@@ -87,9 +87,10 @@ import java.util.Set;
                     "groupId=" + groupId +
                     ", groupName='" + groupName + '\'' +
                     ", academicYear=" + academicYear +
+                    ", students=" + students +
+                    ", faculty=" + faculty +
+                    ", modules=" + modules +
                     '}';
         }
-
-
     }
 

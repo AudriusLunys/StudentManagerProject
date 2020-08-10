@@ -23,7 +23,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class Main extends Application {
+public class Main {
 
 
     public static void main(String[] args) {
@@ -72,7 +72,7 @@ public class Main extends Application {
         studentDAO.addStudent(student2);
 
 
-        System.out.println(groupDAO.getGroupList());
+
 
         }
 
@@ -80,10 +80,4 @@ public class Main extends Application {
 
 
 
-
- @Override
-  public void start(Stage primaryStage) throws Exception {
-          InputGroup inputGroup = new InputGroup();
-        inputGroup.start(primaryStage);
-    }
 }
