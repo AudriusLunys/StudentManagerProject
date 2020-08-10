@@ -18,6 +18,7 @@ import studentmanager.dao.GroupDAO;
 import studentmanager.domain.Faculty;
 import studentmanager.domain.Group;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class GroupMenu extends Application {
@@ -26,12 +27,17 @@ public class GroupMenu extends Application {
     TextField groupNameInput, academicYearInput;
     ObservableList<Group> obsGroups = FXCollections.observableArrayList();
 
+
     public static void main(String[] args) {
 
         // for test purposes
         Faculty faculty1 = new Faculty();
         faculty1.setFacultyName("Statybos Fakultetas");
         faculty1.setSpecialization("Inzinerija");
+
+        Faculty faculty2 = new Faculty();
+        faculty2.setFacultyName("Filosofijos Fakultetas");
+        faculty2.setSpecialization("Filosofija");
 
         Group group1 = new Group();
         group1.setGroupName("STV2019");
@@ -41,10 +47,11 @@ public class GroupMenu extends Application {
         Group group2 = new Group();
         group2.setGroupName("STA2018");
         group2.setAcademicYear(2018);
-        group2.setFaculty(faculty1);
+        group2.setFaculty(faculty2);
 
         FacultyDAO facultyDAO = new FacultyDAO();
         facultyDAO.addFaculty(faculty1);
+        facultyDAO.addFaculty(faculty2);
         GroupDAO groupDAO = new GroupDAO();
         groupDAO.addGroup(group1);
         groupDAO.addGroup(group2);
@@ -98,7 +105,8 @@ public class GroupMenu extends Application {
         academicYearInput.setMinWidth(100);
 
         ChoiceBox<Integer> facultySelect = new ChoiceBox<>();
-
+        FacultyDAO facultyDAO = new FacultyDAO();
+        facultySelect.setItems(getFacultyIds());
 
         Button addButton = new Button("Add");
         Button deleteButton = new Button("Delete");
@@ -128,4 +136,13 @@ public class GroupMenu extends Application {
         }
         return obsGroups;
     }
+     public ObservableList<Integer> getFacultyIds () {
+         ObservableList<Integer> facultyIdList = FXCollections.observableArrayList();
+        FacultyDAO facultyDAO = new FacultyDAO();
+         List<Faculty> facultyList = facultyDAO.getFacultyList();
+         for (Faculty faculty : facultyList) {
+             facultyIdList.add(faculty.getFacultyId());
+         }
+         return facultyIdList;
+     }
 }
