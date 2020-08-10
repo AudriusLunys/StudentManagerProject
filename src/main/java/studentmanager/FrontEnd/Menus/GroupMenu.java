@@ -115,9 +115,11 @@ public class GroupMenu extends Application {
             refreshTable();
         });
 
-
         Button deleteButton = new Button("Delete");
+        deleteButton.setOnAction(event -> deleteButtonClicked());
+
         Button exitButton = new Button("Exit");
+        exitButton.setOnAction(event -> groupWindow.close());
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));
@@ -144,15 +146,6 @@ public class GroupMenu extends Application {
         return obsGroups;
     }
 
-    public ObservableList<Integer> getFacultyIds() {
-        ObservableList<Integer> facultyIdList = FXCollections.observableArrayList();
-        FacultyDAO facultyDAO = new FacultyDAO();
-        List<Faculty> facultyList = facultyDAO.getFacultyList();
-        for (Faculty faculty : facultyList) {
-            facultyIdList.add(faculty.getFacultyId());
-        }
-        return facultyIdList;
-    }
 
     public void addButtonClicked() {
         Group group = new Group();
@@ -168,8 +161,17 @@ public class GroupMenu extends Application {
         facultyIdInput.clear();
     }
 
+    public void deleteButtonClicked() {
+        ObservableList<Group> selectedRows, allFaculties;
+        allFaculties = groupTable.getItems();
+        selectedRows = groupTable.getSelectionModel().getSelectedItems();
+        for (Group group : selectedRows) {
+            allFaculties.remove(group);
+            group = groupDAO.getGroup(selectedRows.get(0).getGroupId());
+            groupDAO.removeGroup(group);
+        }
 
-
+    }
 
     public void refreshTable() {
         obsGroups.clear();
