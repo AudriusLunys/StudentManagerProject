@@ -1,8 +1,6 @@
 package studentmanager.FrontEnd.Menus;
 
 import javafx.application.Application;
-import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -12,16 +10,11 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import javafx.util.Callback;
-import studentmanager.FrontEnd.AlertBox;
-import studentmanager.FrontEnd.InputGroup;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
 import studentmanager.domain.Faculty;
 import studentmanager.domain.Group;
-import studentmanager.domain.Student;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class GroupMenu extends Application {

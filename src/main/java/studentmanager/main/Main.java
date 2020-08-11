@@ -1,15 +1,5 @@
 package studentmanager.main;
 
-import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Label;
-import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
-import org.hibernate.Criteria;
-import org.hibernate.query.Query;
-import studentmanager.FrontEnd.InputGroup;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
 import studentmanager.dao.ModuleDAO;
@@ -20,7 +10,6 @@ import studentmanager.domain.Module;
 import studentmanager.domain.Student;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class Main {
