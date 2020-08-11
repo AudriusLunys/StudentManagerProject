@@ -27,6 +27,14 @@ import java.util.Set;
         public Module() {
         }
 
+        public Integer getModuleId() {
+            return moduleId;
+        }
+
+        public void setModuleId(Integer moduleId) {
+            this.moduleId = moduleId;
+        }
+
         public String getModuleName() {
             return moduleName;
         }

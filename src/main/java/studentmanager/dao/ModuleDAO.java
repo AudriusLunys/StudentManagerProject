@@ -2,8 +2,11 @@ package studentmanager.dao;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import studentmanager.domain.Faculty;
 import studentmanager.domain.Module;
 import studentmanager.utils.HibernateUtils;
+
+import java.util.List;
 
 public class ModuleDAO {
     private Transaction transaction = null;
@@ -64,6 +67,16 @@ public class ModuleDAO {
                 transaction.rollback();
             }
             ex.printStackTrace();
+        }
+    }
+    public List<Module> getModuleList (){
+        try {
+            Session session = HibernateUtils.getSessionFactory().openSession();
+            List<Module> modules = session.createQuery("from Module", Module.class).list();
+            return modules;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 
