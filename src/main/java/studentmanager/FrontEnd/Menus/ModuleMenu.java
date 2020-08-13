@@ -25,10 +25,6 @@ public class ModuleMenu extends Application {
     ObservableList<Module> obsModules = FXCollections.observableArrayList();
     ModuleDAO moduleDAO = new ModuleDAO();
 
-    public static void main(String[] args) {
-
-    }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
 

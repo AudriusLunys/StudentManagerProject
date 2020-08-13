@@ -34,10 +34,6 @@ public class StudentMenu extends Application {
     ObservableList<Student> obsStudents = FXCollections.observableArrayList();
     StudentDAO studentDAO = new StudentDAO();
 
-    public static void main(String[] args) {
-
-    }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {
