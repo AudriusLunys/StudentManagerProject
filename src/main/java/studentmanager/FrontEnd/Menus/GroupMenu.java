@@ -27,33 +27,6 @@ public class GroupMenu extends Application {
 
     public static void main(String[] args) {
 
-        // for test purposes
-        Faculty faculty1 = new Faculty();
-        faculty1.setFacultyName("Statybos Fakultetas");
-        faculty1.setSpecialization("Inzinerija");
-
-        Faculty faculty2 = new Faculty();
-        faculty2.setFacultyName("Filosofijos Fakultetas");
-        faculty2.setSpecialization("Filosofija");
-
-        Group group1 = new Group();
-        group1.setGroupName("STV2019");
-        group1.setAcademicYear(2019);
-        group1.setFaculty(faculty1);
-
-        Group group2 = new Group();
-        group2.setGroupName("STA2018");
-        group2.setAcademicYear(2018);
-        group2.setFaculty(faculty2);
-
-        FacultyDAO facultyDAO = new FacultyDAO();
-        facultyDAO.addFaculty(faculty1);
-        facultyDAO.addFaculty(faculty2);
-        GroupDAO groupDAO = new GroupDAO();
-        groupDAO.addGroup(group1);
-        groupDAO.addGroup(group2);
-
-        launch(args);
     }
 
 
