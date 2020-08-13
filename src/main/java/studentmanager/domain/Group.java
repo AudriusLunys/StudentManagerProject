@@ -1,6 +1,5 @@
 package studentmanager.domain;
 
-import javafx.beans.property.StringProperty;
 
 import javax.persistence.*;
 import java.util.HashSet;
@@ -26,8 +25,6 @@ import java.util.Set;
         private Faculty faculty;
 
         @ManyToMany (mappedBy = "groups")
-      //  @JoinTable (name= "join_groups_modules", joinColumns = {@JoinColumn(name="groupId")},
-            //    inverseJoinColumns ={@JoinColumn(name = "moduleId")} )
         private Set<Module> modules = new HashSet<>();
 
         public Group() {
