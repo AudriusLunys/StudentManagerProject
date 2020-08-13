@@ -11,7 +11,7 @@ import studentmanager.domain.Student;
 
 public class InitData {
 
-    public void loadInitData () {
+    public void loadInitData() {
 
         // for test purposes
         Faculty faculty1 = new Faculty();
@@ -138,6 +138,40 @@ public class InitData {
         student9.setPhoneNumber("+374785552");
         student9.setGroup(group5);
 
+        Student student10 = new Student();
+        student10.setFirstName("Ruta");
+        student10.setLastName("Valentaviciute");
+        student10.setEmail("RutaV@mailbox.lt");
+        student10.setPhoneNumber("+3702228965");
+        student10.setGroup(group6);
+
+        Student student11 = new Student();
+        student11.setFirstName("Edita");
+        student11.setLastName("Mikolaite");
+        student11.setEmail("edm@delfi.lt");
+        student11.setPhoneNumber("+3702564782");
+        student11.setGroup(group3);
+
+        Student student12 = new Student();
+        student12.setFirstName("Zilvinas");
+        student12.setLastName("Zvengulis");
+        student12.setEmail("zigulys@yahoo.com");
+        student12.setPhoneNumber("+370525552");
+        student12.setGroup(group1);
+
+        Student student13 = new Student();
+        student13.setFirstName("Natalija");
+        student13.setLastName("Grabnickaite");
+        student13.setEmail("granata@gmail.com");
+        student13.setPhoneNumber("+370085852");
+        student13.setGroup(group2);
+
+        Student student14 = new Student();
+        student14.setFirstName("Bair");
+        student14.setLastName("Grill");
+        student14.setEmail("Grillxx@gmail.com");
+        student14.setPhoneNumber("+375056322");
+        student14.setGroup(group3);
 
         StudentDAO studentDAO = new StudentDAO();
         studentDAO.addStudent(student1);
@@ -149,6 +183,11 @@ public class InitData {
         studentDAO.addStudent(student7);
         studentDAO.addStudent(student8);
         studentDAO.addStudent(student9);
+        studentDAO.addStudent(student10);
+        studentDAO.addStudent(student11);
+        studentDAO.addStudent(student12);
+        studentDAO.addStudent(student13);
+        studentDAO.addStudent(student14);
 
         Module module1 = new Module();
         module1.setModuleName("Matematika");
