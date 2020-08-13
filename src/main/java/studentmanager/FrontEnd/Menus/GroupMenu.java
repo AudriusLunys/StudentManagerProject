@@ -28,10 +28,6 @@ public class GroupMenu extends Application {
     ObservableList<Group> obsGroups = FXCollections.observableArrayList();
     GroupDAO groupDAO = new GroupDAO();
 
-    public static void main(String[] args) {
-
-    }
-
 
     @Override
     public void start(Stage primaryStage) throws Exception {

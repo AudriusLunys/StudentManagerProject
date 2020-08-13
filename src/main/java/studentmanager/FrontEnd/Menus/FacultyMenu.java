@@ -25,9 +25,6 @@ public class FacultyMenu extends Application {
     ObservableList<Faculty> obsFaculties = FXCollections.observableArrayList();
     FacultyDAO facultyDAO = new FacultyDAO();
 
-    public static void main(String[] args) {
-
-    }
 
     @Override
     public void start(Stage primaryStage) throws Exception {
