@@ -26,25 +26,7 @@ public class FacultyMenu extends Application {
     FacultyDAO facultyDAO = new FacultyDAO();
 
     public static void main(String[] args) {
-        //for test purposes
-        Faculty faculty1 = new Faculty();
-        faculty1.setFacultyName("Statybos Fakultetas");
-        faculty1.setSpecialization("Inzinerija");
 
-        Faculty faculty2 = new Faculty();
-        faculty2.setFacultyName("Informatikos Fakultetas");
-        faculty2.setSpecialization("Informacines technologijos");
-
-        Faculty faculty3 = new Faculty();
-        faculty3.setFacultyName("Filologijos Fakultetas");
-        faculty3.setSpecialization("Filologija");
-
-        FacultyDAO facultyDAO = new FacultyDAO();
-        facultyDAO.addFaculty(faculty1);
-        facultyDAO.addFaculty(faculty2);
-        facultyDAO.addFaculty(faculty3);
-
-        launch();
     }
 
     @Override
@@ -83,7 +65,14 @@ public class FacultyMenu extends Application {
         deleteButton.setOnAction(event -> deleteButtonClicked());
 
         Button exitButton = new Button("Exit");
-        exitButton.setOnAction(event -> facultyWindow.close());
+        MainMenu mainMenu = new MainMenu();
+        exitButton.setOnAction(event -> {
+            try {
+                mainMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));

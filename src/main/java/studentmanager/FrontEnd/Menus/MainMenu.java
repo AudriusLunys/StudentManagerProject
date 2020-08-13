@@ -8,38 +8,70 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MainMenu extends Application {
+    Stage startingWindow;
     public static void main(String[] args) {
-        launch();
     }
-
     @Override
     public void start(Stage primaryStage) throws Exception {
+        startingWindow = primaryStage;
         GridPane rootGridPane = new GridPane();
-        rootGridPane.setHgap(10);
-        rootGridPane.setVgap(10);
+        rootGridPane.setHgap(20);
+        rootGridPane.setVgap(20);
         rootGridPane.setAlignment(Pos.TOP_CENTER);
 
-        Button button1 = new Button("Faculties");
-      //  button1.setOnAction(event -> );
-        button1.setMinSize(250,40);
-        Button button2 = new Button("Groups");
-        button2.setMinSize(250,40);
-        Button button3 = new Button("Modules");
-        button3.setMinSize(250,40);
-        Button button4 = new Button("Students");
-        button4.setMinSize(250,40);
+        Button facultyButton = new Button("Faculties");
+        facultyButton.setMinSize(350, 60);
+        FacultyMenu facultyMenu = new FacultyMenu();
+        facultyButton.setOnAction(event -> {
+            try {
+                facultyMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        Button groupButton = new Button("Groups");
+        groupButton.setMinSize(350, 60);
+        GroupMenu groupMenu = new GroupMenu();
+        groupButton.setOnAction(event -> {
+            try {
+                groupMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        Button modulesButton = new Button("Modules");
+        modulesButton.setMinSize(350, 60);
+        ModuleMenu moduleMenu = new ModuleMenu();
+        modulesButton.setOnAction(event -> {
+            try {
+                moduleMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
-        rootGridPane.add(button1,0,0);
-        rootGridPane.add(button2,0,1);
-        rootGridPane.add(button3,0,2);
-        rootGridPane.add(button4,0,3);
+        Button studentsButton = new Button("Students");
+        studentsButton.setMinSize(350, 60);
+        StudentMenu studentMenu = new StudentMenu();
+        studentsButton.setOnAction(event -> {
+            try {
+                studentMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
+        rootGridPane.add(facultyButton, 0, 0);
+        rootGridPane.add(groupButton, 0, 1);
+        rootGridPane.add(modulesButton, 0, 2);
+        rootGridPane.add(studentsButton, 0, 3);
 
         Scene scene = new Scene(rootGridPane);
         primaryStage.setTitle("Main Menu");
-        primaryStage.setWidth(500);
-        primaryStage.setHeight(300);
+        primaryStage.setWidth(1000);
+        primaryStage.setHeight(500);
         primaryStage.setScene(scene);
-        primaryStage.show();
+        startingWindow.show();
     }
+
 }

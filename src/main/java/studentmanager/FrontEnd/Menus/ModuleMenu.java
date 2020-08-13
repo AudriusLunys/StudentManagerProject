@@ -35,48 +35,7 @@ public class ModuleMenu extends Application {
     ModuleDAO moduleDAO = new ModuleDAO();
 
     public static void main(String[] args) {
-        Faculty faculty = new Faculty();
-        faculty.setFacultyName("statybos fakultetas");
-        faculty.setSpecialization("Inzinerija");
-        FacultyDAO facultyDAO = new FacultyDAO();
-        facultyDAO.addFaculty(faculty);
 
-        Group group = new Group();
-        group.setGroupName("tvg1");
-        group.setAcademicYear(2005);
-        group.setFaculty(faculty);
-        GroupDAO groupDAO = new GroupDAO();
-        groupDAO.addGroup(group);
-
-        Set<Group> moduleGroups = new HashSet<>();
-        moduleGroups.add(group);
-
-        Module module = new Module();
-        module.setModuleName("matematika");
-        module.setModuleCredits(50);
-        module.setAcademicHours(80);
-        module.setGroups(moduleGroups);
-        ModuleDAO moduleDAO = new ModuleDAO();
-        moduleDAO.addModule(module);
-
-        Student student1 = new Student();
-        student1.setFirstName("Donatas");
-        student1.setLastName("Pavardenis");
-        student1.setEmail("pastas@asde.llt");
-        student1.setPhoneNumber("+3746456446");
-        student1.setGroup(group);
-        StudentDAO studentDAO = new StudentDAO();
-        studentDAO.addStudent(student1);
-
-        Student student2 = new Student();
-        student2.setFirstName("Audrius");
-        student2.setLastName("Lunys");
-        student2.setEmail("as@asde.llt");
-        student2.setPhoneNumber("+3758954223");
-        student2.setGroup(group);
-        studentDAO.addStudent(student2);
-
-        launch(args);
     }
 
     @Override
@@ -122,7 +81,14 @@ public class ModuleMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> deleteButtonClicked());
         Button exitButton = new Button("Exit");
-        exitButton.setOnAction(event -> moduleWindow.close());
+        MainMenu mainMenu = new MainMenu();
+        exitButton.setOnAction(event -> {
+            try {
+                mainMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));

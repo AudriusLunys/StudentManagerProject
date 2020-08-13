@@ -115,7 +115,14 @@ public class GroupMenu extends Application {
         deleteButton.setOnAction(event -> deleteButtonClicked());
 
         Button exitButton = new Button("Exit");
-        exitButton.setOnAction(event -> groupWindow.close());
+        MainMenu mainMenu = new MainMenu();
+        exitButton.setOnAction(event -> {
+            try {
+                mainMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
 
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));
