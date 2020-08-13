@@ -13,6 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import javafx.util.Callback;
+import studentmanager.FrontEnd.Alerts.ConfirmBox;
 import studentmanager.dao.FacultyDAO;
 import studentmanager.dao.GroupDAO;
 import studentmanager.domain.Faculty;
@@ -84,7 +85,12 @@ public class GroupMenu extends Application {
         });
 
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(event -> deleteButtonClicked());
+        deleteButton.setOnAction(event -> {
+            boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
+            if(result==true) {
+                deleteButtonClicked();
+            }
+        });
 
         Button exitButton = new Button("Exit");
         MainMenu mainMenu = new MainMenu();

@@ -12,6 +12,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import studentmanager.FrontEnd.Alerts.ConfirmBox;
 import studentmanager.dao.ModuleDAO;
 import studentmanager.domain.Module;
 import java.util.List;
@@ -66,7 +67,14 @@ public class ModuleMenu extends Application {
         });
 
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(event -> deleteButtonClicked());
+        deleteButton.setOnAction(event -> {
+            boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
+            if(result==true) {
+                deleteButtonClicked();
+            }
+        });
+
+
         Button exitButton = new Button("Exit");
         MainMenu mainMenu = new MainMenu();
         exitButton.setOnAction(event -> {

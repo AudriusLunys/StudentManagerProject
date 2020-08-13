@@ -13,18 +13,13 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import studentmanager.dao.FacultyDAO;
+import studentmanager.FrontEnd.Alerts.ConfirmBox;
 import studentmanager.dao.GroupDAO;
-import studentmanager.dao.ModuleDAO;
 import studentmanager.dao.StudentDAO;
-import studentmanager.domain.Faculty;
 import studentmanager.domain.Group;
-import studentmanager.domain.Module;
 import studentmanager.domain.Student;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class StudentMenu extends Application {
 
@@ -89,7 +84,12 @@ public class StudentMenu extends Application {
         });
 
         Button deleteButton = new Button("Delete");
-        deleteButton.setOnAction(event -> deleteButtonClicked());
+        deleteButton.setOnAction(event -> {
+            boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
+            if(result==true) {
+                deleteButtonClicked();
+            }
+        });
 
         Button exitButton = new Button("Exit");
         MainMenu mainMenu = new MainMenu();
