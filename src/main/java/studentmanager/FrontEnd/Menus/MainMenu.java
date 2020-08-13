@@ -21,45 +21,19 @@ public class MainMenu extends Application {
 
         Button facultyButton = new Button("Faculties");
         facultyButton.setMinSize(350, 60);
-        FacultyMenu facultyMenu = new FacultyMenu();
-        facultyButton.setOnAction(event -> {
-            try {
-                facultyMenu.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        facultyButtonClicked(primaryStage, facultyButton);
+
         Button groupButton = new Button("Groups");
         groupButton.setMinSize(350, 60);
-        GroupMenu groupMenu = new GroupMenu();
-        groupButton.setOnAction(event -> {
-            try {
-                groupMenu.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        groupButtonClicked(primaryStage, groupButton);
+
         Button modulesButton = new Button("Modules");
         modulesButton.setMinSize(350, 60);
-        ModuleMenu moduleMenu = new ModuleMenu();
-        modulesButton.setOnAction(event -> {
-            try {
-                moduleMenu.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        moduleButtonClicked(primaryStage, modulesButton);
 
         Button studentsButton = new Button("Students");
         studentsButton.setMinSize(350, 60);
-        StudentMenu studentMenu = new StudentMenu();
-        studentsButton.setOnAction(event -> {
-            try {
-                studentMenu.start(primaryStage);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        });
+        studentButtonClicked(primaryStage, studentsButton);
 
         rootGridPane.add(facultyButton, 0, 0);
         rootGridPane.add(groupButton, 0, 1);
@@ -72,6 +46,50 @@ public class MainMenu extends Application {
         primaryStage.setHeight(500);
         primaryStage.setScene(scene);
         startingWindow.show();
+    }
+
+    private void studentButtonClicked(Stage primaryStage, Button studentsButton) {
+        StudentMenu studentMenu = new StudentMenu();
+        studentsButton.setOnAction(event -> {
+            try {
+                studentMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void moduleButtonClicked(Stage primaryStage, Button modulesButton) {
+        ModuleMenu moduleMenu = new ModuleMenu();
+        modulesButton.setOnAction(event -> {
+            try {
+                moduleMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void groupButtonClicked(Stage primaryStage, Button groupButton) {
+        GroupMenu groupMenu = new GroupMenu();
+        groupButton.setOnAction(event -> {
+            try {
+                groupMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
+
+    private void facultyButtonClicked(Stage primaryStage, Button facultyButton) {
+        FacultyMenu facultyMenu = new FacultyMenu();
+        facultyButton.setOnAction(event -> {
+            try {
+                facultyMenu.start(primaryStage);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
     }
 
 }
