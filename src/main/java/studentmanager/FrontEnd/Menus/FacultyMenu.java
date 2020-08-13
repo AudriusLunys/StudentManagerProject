@@ -34,7 +34,6 @@ public class FacultyMenu extends Application {
         facultyWindow = primaryStage;
         facultyWindow.setTitle("Faculty Menu");
 
-
         TableColumn<Faculty, Integer> facultyIdColumn = new TableColumn<>("Faculty ID");
         facultyIdColumn.setMinWidth(100);
         facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("facultyId"));
@@ -109,19 +108,19 @@ public class FacultyMenu extends Application {
             facultyNameInput.clear();
             facultySpecializationInput.clear();
         }
-
-
     }
     public void deleteButtonClicked() {
         ObservableList<Faculty> selectedRows, allFaculties;
         allFaculties = facultyTable.getItems();
         selectedRows = facultyTable.getSelectionModel().getSelectedItems();
-        for (Faculty faculty : selectedRows) {
-            allFaculties.remove(faculty);
-            faculty = facultyDAO.getFaculty(selectedRows.get(0).getFacultyId());
-            facultyDAO.removeFaculty(faculty);
+        for (Faculty selectedRow : selectedRows) {
+            allFaculties.remove(selectedRow);
+            selectedRow = facultyDAO.getFaculty(selectedRow.getFacultyId());
+            facultyDAO.removeFaculty(selectedRow);
         }
     }
+
+
     public void refreshTable() {
         obsFaculties.clear();
         getFaculty();
