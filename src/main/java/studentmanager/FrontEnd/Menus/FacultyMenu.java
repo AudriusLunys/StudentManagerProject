@@ -102,10 +102,14 @@ public class FacultyMenu extends Application {
         Faculty faculty = new Faculty();
         faculty.setFacultyName(facultyNameInput.getText());
         faculty.setSpecialization(facultySpecializationInput.getText());
-        facultyDAO.addFaculty(faculty);
-        facultyNameInput.clear();
-        facultySpecializationInput.clear();
-        // reikia ifo kuris tikrintu textbox inputo ilgi
+        if (facultyNameInput.getText().isEmpty() || facultySpecializationInput.getText().isEmpty()) {
+            System.out.println("error");
+        } else {
+            facultyDAO.addFaculty(faculty);
+            facultyNameInput.clear();
+            facultySpecializationInput.clear();
+        }
+
 
     }
     public void deleteButtonClicked() {

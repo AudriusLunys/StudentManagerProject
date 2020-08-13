@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import studentmanager.FrontEnd.Alerts.ConfirmBox;
 
 public class MainMenu extends Application {
     Stage startingWindow;
@@ -35,10 +36,21 @@ public class MainMenu extends Application {
         studentsButton.setMinSize(350, 60);
         studentButtonClicked(primaryStage, studentsButton);
 
+        Button exitButton = new Button("Close Program");
+        exitButton.setAlignment(Pos.CENTER);
+        exitButton.setMinSize(100, 30);
+        exitButton.setOnAction(event -> {
+           boolean result = ConfirmBox.display("Confirm", "Are you sure you want to Exit?");
+           if(result==true) {
+               primaryStage.close();
+           }
+        });
+
         rootGridPane.add(facultyButton, 0, 0);
         rootGridPane.add(groupButton, 0, 1);
         rootGridPane.add(modulesButton, 0, 2);
         rootGridPane.add(studentsButton, 0, 3);
+        rootGridPane.add(exitButton,0,4);
 
         Scene scene = new Scene(rootGridPane);
         primaryStage.setTitle("Main Menu");

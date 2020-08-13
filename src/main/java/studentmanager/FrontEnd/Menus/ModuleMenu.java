@@ -1,5 +1,4 @@
 package studentmanager.FrontEnd.Menus;
-
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -13,18 +12,10 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import studentmanager.dao.FacultyDAO;
-import studentmanager.dao.GroupDAO;
 import studentmanager.dao.ModuleDAO;
-import studentmanager.dao.StudentDAO;
-import studentmanager.domain.Faculty;
-import studentmanager.domain.Group;
 import studentmanager.domain.Module;
-import studentmanager.domain.Student;
-
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
 
 public class ModuleMenu extends Application {
 

@@ -135,6 +135,7 @@ public class GroupMenu extends Application {
         groupNameInput.clear();
         academicYearInput.clear();
         facultyIdInput.clear();
+
     }
 
 

@@ -136,6 +136,7 @@ public class StudentMenu extends Application {
         lastNameInput.clear();
         phoneNumberInput.clear();
         emailInput.clear();
+        groupIdInput.clear();
 
     }
 
