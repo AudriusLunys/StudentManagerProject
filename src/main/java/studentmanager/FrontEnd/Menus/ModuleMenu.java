@@ -13,16 +13,21 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import studentmanager.FrontEnd.Alerts.ConfirmBox;
+import studentmanager.dao.GroupDAO;
 import studentmanager.dao.ModuleDAO;
+import studentmanager.domain.Group;
 import studentmanager.domain.Module;
+
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class ModuleMenu extends Application {
 
     Stage moduleWindow;
     TableView<Module> moduleTable;
-    TextField moduleNameInput, creditsInput, academicHoursInput;
+    TextField moduleNameInput, creditsInput, academicHoursInput, moduleIdInput, groupIdInput;
     ObservableList<Module> obsModules = FXCollections.observableArrayList();
     ModuleDAO moduleDAO = new ModuleDAO();
 
@@ -60,6 +65,15 @@ public class ModuleMenu extends Application {
         academicHoursInput.setPromptText("Module Hours");
         academicHoursInput.setMinWidth(100);
 
+        moduleIdInput = new TextField();
+        moduleIdInput.setPromptText("Module ID");
+        moduleIdInput.setMinWidth(100);
+
+        groupIdInput = new TextField();
+        groupIdInput .setPromptText("Group ID");
+        groupIdInput .setMinWidth(100);
+
+
         Button addButton = new Button("Add");
         addButton.setOnAction(event -> {
             addButtonClicked();
@@ -85,17 +99,25 @@ public class ModuleMenu extends Application {
             }
         });
 
+        Button assignButton = new Button("Assign");
+        assignButton.setOnAction(event -> assignButtonClicked());
+
         HBox hBox = new HBox();
         hBox.setPadding(new Insets(10, 10, 10, 10));
         hBox.setSpacing(10);
         hBox.getChildren().addAll(moduleNameInput, creditsInput, academicHoursInput, addButton, deleteButton, exitButton);
+
+        HBox hBox1 = new HBox();
+        hBox1.setPadding(new Insets(10, 10, 10, 10));
+        hBox1.setSpacing(10);
+        hBox1.getChildren().addAll(moduleIdInput,groupIdInput,assignButton);
 
         moduleTable = new TableView<>();
         moduleTable.setItems(getModule());
         moduleTable.getColumns().addAll(moduleIdColumn, moduleNameColumn, moduleCreditsColumn, academicHoursColumn);
 
         VBox vBox = new VBox();
-        vBox.getChildren().addAll(moduleTable, hBox);
+        vBox.getChildren().addAll(moduleTable, hBox, hBox1);
         Scene scene = new Scene(vBox);
         moduleWindow.setScene(scene);
         moduleWindow.show();
@@ -131,12 +153,22 @@ public class ModuleMenu extends Application {
             selectedRow = moduleDAO.getModule(selectedRow.getModuleId());
             moduleDAO.removeModule(selectedRow);
         }
-
     }
 
     public void refreshTable() {
         obsModules.clear();
         getModule();
         moduleTable.refresh();
+    }
+
+    public void assignButtonClicked() {
+        Module module = moduleDAO.getModule(Integer.parseInt(moduleIdInput.getText()));
+        GroupDAO groupDAO = new GroupDAO();
+        Set<Group> groupsOfModule = new HashSet<>();
+        groupsOfModule.add(groupDAO.getGroup(Integer.parseInt(groupIdInput.getText())));
+        module.setGroups(groupsOfModule);
+        moduleDAO.updateModule(module);
+        moduleIdInput.clear();
+        groupIdInput.clear();
     }
 }

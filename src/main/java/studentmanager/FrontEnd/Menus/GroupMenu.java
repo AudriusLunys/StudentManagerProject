@@ -48,7 +48,7 @@ public class GroupMenu extends Application {
         academicYearColumn.setMinWidth(100);
         academicYearColumn.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
 
-           TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
+          TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
           facultyIdColumn.setMinWidth(100);
            facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("faculty"));
            facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
@@ -109,7 +109,7 @@ public class GroupMenu extends Application {
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
-        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn,facultyNameColumn, facultyIdColumn);  //facultyNameColumn,  facultyIdColumn
+        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn,facultyNameColumn,  facultyIdColumn);  //facultyNameColumn,  facultyIdColumn
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(groupTable, hBox);

@@ -9,6 +9,11 @@ import studentmanager.domain.Group;
 import studentmanager.domain.Module;
 import studentmanager.domain.Student;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 public class InitData {
 
     public void loadInitData() {
@@ -74,6 +79,10 @@ public class InitData {
         groupDAO.addGroup(group4);
         groupDAO.addGroup(group5);
         groupDAO.addGroup(group6);
+
+        Set<Group> groupsOfModule1 = new HashSet<>();
+        groupsOfModule1.add(group1);
+        groupsOfModule1.add(group3);
 
         Student student1 = new Student();
         student1.setFirstName("Vacys");
@@ -193,6 +202,7 @@ public class InitData {
         module1.setModuleName("Matematika");
         module1.setModuleCredits(89);
         module1.setAcademicHours(50);
+        module1.setGroups(groupsOfModule1);
 
         Module module2 = new Module();
         module2.setModuleName("Filosofija");
