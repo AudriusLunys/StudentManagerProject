@@ -1,4 +1,5 @@
 package studentmanager.FrontEnd.Menus;
+
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -34,6 +35,11 @@ public class ModuleMenu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        displayModuleMenu(primaryStage);
+
+    }
+
+    public void displayModuleMenu(Stage primaryStage) {
         moduleWindow = primaryStage;
         moduleWindow.setTitle("Module Menu");
 
@@ -70,9 +76,8 @@ public class ModuleMenu extends Application {
         moduleIdInput.setMinWidth(100);
 
         groupIdInput = new TextField();
-        groupIdInput .setPromptText("Group ID");
-        groupIdInput .setMinWidth(100);
-
+        groupIdInput.setPromptText("Group ID");
+        groupIdInput.setMinWidth(100);
 
         Button addButton = new Button("Add");
         addButton.setOnAction(event -> {
@@ -83,11 +88,10 @@ public class ModuleMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
             boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
-            if(result==true) {
+            if (result == true) {
                 deleteButtonClicked();
             }
         });
-
 
         Button exitButton = new Button("Exit");
         MainMenu mainMenu = new MainMenu();
@@ -110,7 +114,7 @@ public class ModuleMenu extends Application {
         HBox hBox1 = new HBox();
         hBox1.setPadding(new Insets(10, 10, 10, 10));
         hBox1.setSpacing(10);
-        hBox1.getChildren().addAll(moduleIdInput,groupIdInput,assignButton);
+        hBox1.getChildren().addAll(moduleIdInput, groupIdInput, assignButton);
 
         moduleTable = new TableView<>();
         moduleTable.setItems(getModule());
@@ -121,7 +125,6 @@ public class ModuleMenu extends Application {
         Scene scene = new Scene(vBox);
         moduleWindow.setScene(scene);
         moduleWindow.show();
-
     }
 
     public ObservableList<Module> getModule() {
@@ -141,7 +144,6 @@ public class ModuleMenu extends Application {
         moduleNameInput.clear();
         creditsInput.clear();
         academicHoursInput.clear();
-
     }
 
     public void deleteButtonClicked() {

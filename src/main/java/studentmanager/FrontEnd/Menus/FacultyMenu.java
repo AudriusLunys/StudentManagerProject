@@ -29,6 +29,10 @@ public class FacultyMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        displayFacultyMenu(primaryStage);
+    }
+
+    public void displayFacultyMenu(Stage primaryStage) {
         facultyWindow = primaryStage;
         facultyWindow.setTitle("Faculty Menu");
 
@@ -61,7 +65,7 @@ public class FacultyMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
             boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
-            if(result==true) {
+            if (result == true) {
                 deleteButtonClicked();
             }
         });
@@ -112,6 +116,7 @@ public class FacultyMenu extends Application {
             facultySpecializationInput.clear();
         }
     }
+
     public void deleteButtonClicked() {
         ObservableList<Faculty> selectedRows, allFaculties;
         allFaculties = facultyTable.getItems();

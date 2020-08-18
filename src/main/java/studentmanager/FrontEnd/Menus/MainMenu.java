@@ -14,6 +14,10 @@ public class MainMenu extends Application {
     }
     @Override
     public void start(Stage primaryStage) throws Exception {
+        displayMainMenu(primaryStage);
+    }
+
+    public void displayMainMenu(Stage primaryStage) {
         startingWindow = primaryStage;
         GridPane rootGridPane = new GridPane();
         rootGridPane.setHgap(20);

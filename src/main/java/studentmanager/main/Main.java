@@ -5,7 +5,6 @@ import javafx.stage.Stage;
 import studentmanager.FrontEnd.Menus.MainMenu;
 import studentmanager.utils.InitData;
 
-
 public class Main extends Application {
 
     public static void main(String[] args) {

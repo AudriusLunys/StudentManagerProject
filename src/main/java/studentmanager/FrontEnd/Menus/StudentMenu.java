@@ -18,8 +18,8 @@ import studentmanager.dao.GroupDAO;
 import studentmanager.dao.StudentDAO;
 import studentmanager.domain.Group;
 import studentmanager.domain.Student;
-import java.util.List;
 
+import java.util.List;
 
 public class StudentMenu extends Application {
 
@@ -32,6 +32,10 @@ public class StudentMenu extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception {
+        displayStudentMenu(primaryStage);
+    }
+
+    public void displayStudentMenu(Stage primaryStage) {
         studentWindow = primaryStage;
         studentWindow.setTitle("Student Menu");
 
@@ -55,7 +59,6 @@ public class StudentMenu extends Application {
         emailColumn.setMinWidth(150);
         emailColumn.setCellValueFactory(new PropertyValueFactory<>("email"));
 
-
         firstNameInput = new TextField();
         firstNameInput.setPromptText("First Name");
         firstNameInput.setMinWidth(100);
@@ -76,7 +79,6 @@ public class StudentMenu extends Application {
         groupIdInput.setPromptText("Group ID");
         groupIdInput.setMinWidth(100);
 
-
         Button addButton = new Button("Add");
         addButton.setOnAction(event -> {
             addButtonClicked();
@@ -86,7 +88,7 @@ public class StudentMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
             boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
-            if(result==true) {
+            if (result == true) {
                 deleteButtonClicked();
             }
         });
@@ -133,7 +135,6 @@ public class StudentMenu extends Application {
         phoneNumberInput.clear();
         emailInput.clear();
         groupIdInput.clear();
-
     }
 
     public void deleteButtonClicked() {
@@ -145,9 +146,7 @@ public class StudentMenu extends Application {
             selectedRow = studentDAO.getStudent(selectedRow.getStudentId());
             studentDAO.removeStudent(selectedRow);
         }
-
     }
-
 
     public ObservableList<Student> getStudent() {
         List<Student> studentList = studentDAO.getStudentList();

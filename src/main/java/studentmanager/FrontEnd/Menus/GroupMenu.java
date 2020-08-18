@@ -33,6 +33,10 @@ public class GroupMenu extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+        displayGroupMenu(primaryStage);
+    }
+
+    public void displayGroupMenu(Stage primaryStage) {
         groupWindow = primaryStage;
         groupWindow.setTitle("Group Menu");
 
@@ -48,23 +52,23 @@ public class GroupMenu extends Application {
         academicYearColumn.setMinWidth(100);
         academicYearColumn.setCellValueFactory(new PropertyValueFactory<>("academicYear"));
 
-          TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
-          facultyIdColumn.setMinWidth(100);
-           facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("faculty"));
-           facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
-              @Override
-               public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
-                   return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
-             }
-            });
-         TableColumn<Group, String> facultyNameColumn = new TableColumn<>("faculty Name");
-         facultyNameColumn.setMinWidth(200);
-           facultyNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
-             @Override
-             public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
-                 return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
-              }
-           });
+        TableColumn<Group, Integer> facultyIdColumn = new TableColumn<>("faculty ID");
+        facultyIdColumn.setMinWidth(100);
+        facultyIdColumn.setCellValueFactory(new PropertyValueFactory<>("faculty"));
+        facultyIdColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, Integer>, ObservableValue<Integer>>() {
+            @Override
+            public ObservableValue<Integer> call(TableColumn.CellDataFeatures<Group, Integer> param) {
+                return new SimpleObjectProperty<>(param.getValue().getFaculty().getFacultyId());
+            }
+        });
+        TableColumn<Group, String> facultyNameColumn = new TableColumn<>("faculty Name");
+        facultyNameColumn.setMinWidth(200);
+        facultyNameColumn.setCellValueFactory(new Callback<TableColumn.CellDataFeatures<Group, String>, ObservableValue<String>>() {
+            @Override
+            public ObservableValue<String> call(TableColumn.CellDataFeatures<Group, String> param) {
+                return new SimpleObjectProperty(param.getValue().getFaculty().getFacultyName());
+            }
+        });
 
         groupNameInput = new TextField();
         groupNameInput.setPromptText("Group Name");
@@ -87,7 +91,7 @@ public class GroupMenu extends Application {
         Button deleteButton = new Button("Delete");
         deleteButton.setOnAction(event -> {
             boolean result = ConfirmBox.display("Confirm", "Delete- are you sure?");
-            if(result==true) {
+            if (result == true) {
                 deleteButtonClicked();
             }
         });
@@ -109,7 +113,7 @@ public class GroupMenu extends Application {
 
         groupTable = new TableView<>();
         groupTable.setItems(getGroup());
-        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn,facultyNameColumn,  facultyIdColumn);  //facultyNameColumn,  facultyIdColumn
+        groupTable.getColumns().addAll(groupIdColumn, groupNameColumn, academicYearColumn, facultyNameColumn, facultyIdColumn);  //facultyNameColumn,  facultyIdColumn
 
         VBox vBox = new VBox();
         vBox.getChildren().addAll(groupTable, hBox);
