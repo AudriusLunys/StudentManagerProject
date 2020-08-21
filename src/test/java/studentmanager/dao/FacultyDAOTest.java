@@ -3,6 +3,8 @@ package studentmanager.dao;
 import studentmanager.domain.Faculty;
 
 
+import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -67,6 +69,14 @@ class FacultyDAOTest {
 
     @org.junit.jupiter.api.Test
     void getFacultyList() {
+        Faculty faculty1 = new Faculty();
+        faculty1.setFacultyName("OneFaculty");
+        faculty1.setSpecialization("BestSpec");
+        facultyDAO.addFaculty(faculty1);
+        List<Faculty> faculties = new ArrayList<>();
+        faculties=facultyDAO.getFacultyList();
+        assertFalse(faculties.isEmpty());
+        assertFalse(faculties.equals(null));
 
         }
     }
